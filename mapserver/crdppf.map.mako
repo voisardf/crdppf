@@ -1519,6 +1519,36 @@ LAYER
   END
 END
 
+
+LAYER
+  NAME "r901_alignements"
+  TYPE LINE
+  METADATA
+       "ows_title" "r901_alignements"
+       "wms_srs"                    "EPSG:2056"
+       "wms_title"                      "${instanceid} WMS Server"
+       "wms_onlineresource"     "http://${host}/${instanceid}/wmscrdppf"
+       "wms_srs"                    "EPSG:2056"
+  END
+  CONNECTIONTYPE POSTGIS
+  CONNECTION "user=${dbuser} password=${dbpassword} dbname=${db} host=${dbhost} port=${dbport}"
+  PROCESSING "CLOSE_CONNECTION=DEFER"
+  DATA "geom from crdppf.r901_alignements using unique idobj using srid=2056"
+  STATUS ON
+  TEMPLATE "ttt"
+  TOLERANCE 5
+  TOLERANCEUNITS pixels
+  CLASSITEM "codegenre"
+  CLASS
+    NAME "Alignement"
+    EXPRESSION /7101/
+    STYLE
+        WIDTH 2
+        COLOR 0 0 255
+    END
+  END
+END
+
 #####################
 # RESTRICTIONS CRDPPF - fin
 #####################
